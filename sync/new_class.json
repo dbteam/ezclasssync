@@ -1,0 +1,103 @@
+{
+    "identifier": "new_class",
+    "initial_language_id": 2,
+    "is_container": 0,
+    "always_available": 1,
+    "contentobject_name": "<new_attribute2>",
+    "language_mask": 3,
+    "remote_id": "1987e7963e35fc4bfc846497706e313e",
+    "sort_field": 1,
+    "sort_order": 1,
+    "url_alias_name": "",
+    "languages": ["eng-GB"],
+    "translation": {
+        "eng-GB": {
+            "name": "ClassNameTest",
+            "description": "ClassDesc"
+        }
+    },
+
+    "attributes": {
+        "new_attribute1": {
+            "data_type_string": "ezstring",
+            "is_information_collector": 0,
+            "is_required": 1,
+            "is_searchable": 0,
+            "can_translate": 1,
+            "category": "",
+            "data_float_1": 0,
+            "data_float_2": 0,
+            "data_float_3": 0,
+            "data_float_4": 0,
+            "data_int1": 0,
+            "data_int2": 0,
+            "data_int3": 0,
+            "data_int4": 0,
+            "data_text1": "",
+            "data_text2": "",
+            "data_text3": "",
+            "data_text4": "",
+            "data_text5": "",
+            "translation": {
+                "eng-GB": {
+                    "name": "1Name-",
+                    "description": "1Desc-"
+                }
+            }
+        },
+        "new_attribute2": {
+            "data_type_string": "ezboolean",
+            "is_information_collector": 0,
+            "is_required": 0,
+            "is_searchable": 0,
+            "can_translate": 0,
+            "category": "",
+            "data_float_1": 0,
+            "data_float_2": 0,
+            "data_float_3": 0,
+            "data_float_4": 0,
+            "data_int1": 0,
+            "data_int2": 0,
+            "data_int3": 0,
+            "data_int4": 0,
+            "data_text1": "",
+            "data_text2": "",
+            "data_text3": "",
+            "data_text4": "",
+            "data_text5": "",
+            "translation": {
+                "eng-GB": {
+                    "name": "2Name-",
+                    "description": "2Desc-"
+                }
+            }
+        },
+        "new_attribute3": {
+            "data_type_string": "ezstring",
+            "is_information_collector": 0,
+            "is_required": 1,
+            "is_searchable": 0,
+            "can_translate": 1,
+            "category": "",
+            "data_float_1": 0,
+            "data_float_2": 0,
+            "data_float_3": 0,
+            "data_float_4": 0,
+            "data_int1": 32,
+            "data_int2": 0,
+            "data_int3": 0,
+            "data_int4": 0,
+            "data_text1": "3DefTest",
+            "data_text2": "",
+            "data_text3": "",
+            "data_text4": "",
+            "data_text5": "",
+            "translation": {
+                "eng-GB": {
+                    "name": "3Name-",
+                    "description": "3Desc-"
+                }
+            }
+        }
+    }
+}
