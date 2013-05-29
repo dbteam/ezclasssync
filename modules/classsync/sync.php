@@ -25,5 +25,5 @@ if (!empty($filename) && file_exists($filename)) {
     $tpl->setVariable('result', 'Error: file not found.');
 }
 
-$Result['content'] = $tpl->fetch('design:result.tpl');
+$Result['content'] = $tpl->fetch('design:classsync/result.tpl');
 $Result['path'] = array(array('text' => 'Class Sync: Check'));

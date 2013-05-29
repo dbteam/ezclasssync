@@ -18,7 +18,7 @@ if (!empty($filename) && file_exists($filename)) {
     $tpl->setVariable('compareResultClass', $compare->compareClassResults);
     $tpl->setVariable('compareResultAttribute', $compare->compareAttributesResults);
 
-    $Result['content'] = $tpl->fetch('design:check.tpl');
+    $Result['content'] = $tpl->fetch('design:classsync/check.tpl');
 } else {
     $Result['content'] = $tpl->setVariable('result', 'Error: file not found.');
 }

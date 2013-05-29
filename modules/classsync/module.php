@@ -5,7 +5,7 @@ $Module = array('name'            => 'ezClassSync',
 
 $ViewList = array();
 $ViewList['dashboard'] = array(
-    'functions'               => array('dashboard'),
+    'functions'               => array('check'),
     'script'                  => 'dashboard.php',
     'default_navigation_part' => 'ezclasssyncnavigationpart',
     'params'                  => array());
@@ -22,6 +22,11 @@ $ViewList['sync'] = array(
     'default_navigation_part' => 'ezclasssyncnavigationpart',
     'params'                  => array('file'));
 
+$ViewList['export'] = array(
+    'functions'               => array('check'),
+    'script'                  => 'export.php',
+    'default_navigation_part' => 'ezclasssyncnavigationpart',
+    'params'                  => array('classID'));
+
 $FunctionList = array();
-$FunctionList['dashboard'] = array();
 $FunctionList['check'] = array();

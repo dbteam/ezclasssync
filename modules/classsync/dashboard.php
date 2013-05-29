@@ -21,7 +21,7 @@ foreach ($files as $k => $v) {
 $tpl->setVariable('fileList', $fileList);
 
 $Result = array();
-$Result['content'] = $tpl->fetch('design:dashboard.tpl');
+$Result['content'] = $tpl->fetch('design:classsync/dashboard.tpl');
 $Result['path'] = array(array('text' => 'Class Sync'));
 //$Result['ui_context'] = 'dashboard';
 //$Result['content_info'] = array();
