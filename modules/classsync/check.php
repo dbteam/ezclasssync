@@ -11,6 +11,7 @@ if (!empty($filename) && file_exists($filename)) {
     $sync = new eZClassSync($filename);
     $sync->compare();
 
+    $tpl->setVariable('formFileData', $Params['file']);
     $tpl->setVariable('class', $sync->getClassName());
     $tpl->setVariable('attrToAdd', implode(', ', $sync->attributesToAdd));
     $tpl->setVariable('attrToDrop', implode(', ', $sync->attributesToDelete));

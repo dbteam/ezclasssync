@@ -359,7 +359,6 @@ class eZClassSync
                                 = 'Attribute <code>' . $v->Identifier . '</code> (' . $k . ') param <code>'
                                 . $data['param']
                                 . '</code> updated to ' . htmlspecialchars($classAttributes[$k]->$data['param']);
-                            var_dump($v);
                         }
                     }
 

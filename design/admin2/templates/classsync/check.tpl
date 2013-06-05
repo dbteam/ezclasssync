@@ -8,7 +8,9 @@
 	{if ne($attrToDrop,'')}Attributes to drop: {$attrToDrop}<br/>{/if}
 	{if ne($attrToUp,'')}Attributes to update: {$attrToUp}<br/>{/if}
 	<div class="block">
-		<input class="defaultbutton" value="Update & Sync">
+		<form method="get" action={concat("classsync/sync/", $formFileData)|ezurl}>
+			<input class="defaultbutton" type="submit" value="Update & Sync">
+		</form>
 	</div>
 	<div class="block" style="border: 5px solid red; padding: 0 5px; background: tomato; text-align: center;">
 		<p><strong>Don't forget to make database backup before applying changes!</strong></p>
@@ -19,7 +21,9 @@
 {if not($compareResultClass|count)}
 	<p>This class will be installed!</p>
 	<div class="block">
-		<input class="defaultbutton" value="Install">
+		<form method="get" action={"classsync/sync/formFileData"|ezurl}>
+			<input class="defaultbutton" type="submit" value="Install">
+		</form>
 	</div>
 {/if}
 
