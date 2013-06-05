@@ -7,7 +7,7 @@ Those class entries are found in current installation:
 		<th>ID</th>
 		<th>Filename</th>
 		<th>Class identifier</th>
-		<th colspan="2">Options</th>
+		<th colspan="3" width="25%">Options</th>
 	</tr>
 	{foreach $fileList as $i => $file}
 		<tr>
@@ -15,7 +15,7 @@ Those class entries are found in current installation:
 			<td>{$file.filename}</td>
 			<td>Identifier: <strong>{$file.identifier}</strong>, Attributes: <strong>{$file.attribute_count}</strong></td>
 			<td><a href={concat("classsync/check/", $file.filehash)|ezurl}>Check</a></td>
-			<td><a href={concat("classsync/sync/", $file.filehash)|ezurl}>Sync</a></td>
+			<td><a href={concat("classsync/sync/", $file.filehash)|ezurl}>Sync / Install</a></td>
 		</tr>
 	{/foreach}
 </table>

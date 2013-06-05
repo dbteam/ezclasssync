@@ -8,15 +8,16 @@ $filename = base64_decode($Params['file']);
 
 if (!empty($filename) && file_exists($filename)) {
 
-    $compare = new eZClassSyncCompare();
-    $differences = $compare->compare($filename);
+    $sync = new eZClassSync($filename);
+    $sync->compare();
 
-    $tpl->setVariable('attrToAdd', implode(' ,', $compare->attributesToAdd));
-    $tpl->setVariable('attrToDrop', implode(' ,', $compare->attributesToDrop));
-    $tpl->setVariable('attrToUp', implode(' ,', $compare->attributesToUpdate));
-    $tpl->setVariable('differences', $differences);
-    $tpl->setVariable('compareResultClass', $compare->compareClassResults);
-    $tpl->setVariable('compareResultAttribute', $compare->compareAttributesResults);
+    $tpl->setVariable('class', $sync->getClassName());
+    $tpl->setVariable('attrToAdd', implode(', ', $sync->attributesToAdd));
+    $tpl->setVariable('attrToDrop', implode(', ', $sync->attributesToDelete));
+    $tpl->setVariable('attrToUp', implode(', ', $sync->attributesToUpdate));
+    $tpl->setVariable('differences', $sync->getTotalDifferences());
+    $tpl->setVariable('compareResultClass', $sync->getClassParamCompareResults());
+    $tpl->setVariable('compareResultAttribute', $sync->getClassAttributesCompareResults());
 
     $Result['content'] = $tpl->fetch('design:classsync/check.tpl');
 } else {

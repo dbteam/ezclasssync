@@ -29,7 +29,34 @@ class eZClassSyncDataAttribute extends eZClassSyncDataParams
         return $this;
     }
 
-    public function getDefinitions()
+    public function fillFromArray($attributeName, $attributeData, $parent)
+    {
+        foreach ($this->getDefinitions() as $property => $value) {
+            if ($value['json'] !== null) {
+                $this->_data[$property] = (array_key_exists($value['json'], $attributeData))
+                    ? $attributeData[$value['json']] : $value['default'];
+            }
+        }
+
+        $this->_data['Identifier'] = $attributeName;
+
+        //todo: directly navigate parent, just keep reference in obj
+        $this->languages = $parent->languages;
+        $this->defaultLanguage = $parent->defaultLanguage;
+
+        $translations = $attributeData['translation'];
+
+        foreach ($this->languages as $lang) {
+            $this->_nameLang[$lang] = (!empty($translations[$lang]['name']))
+                ? $translations[$lang]['name'] : '';
+            $this->_descriptionLang[$lang] = (!empty($translations[$lang]['description']))
+                ? $translations[$lang]['description'] : '';
+        }
+
+        return $this;
+    }
+
+    public static function getDefinitions()
     {
         return array(
             'Identifier'             => array('json' => null, 'default' => 'new_attribute'),

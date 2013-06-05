@@ -4,20 +4,20 @@ class eZClassSyncDataParams
 {
 
     public $languages = array();
-    public $defaultLanguage = array();
+    public $defaultLanguage = null;
     protected $_nameLang = array();
     protected $_descriptionLang = array();
     protected $_data = array();
 
     public function getName($lang)
     {
-        return (!empty($this->_nameLang[$lang])) ? $this->_nameLang[$lang]
+        return (array_key_exists($lang, $this->_nameLang)) ? $this->_nameLang[$lang]
             : $this->_nameLang[$this->defaultLanguage];
     }
 
     public function getDescription($lang)
     {
-        return (!empty($this->_descriptionLang[$lang])) ? $this->_descriptionLang[$lang]
+        return (array_key_exists($lang, $this->_descriptionLang)) ? $this->_descriptionLang[$lang]
             : $this->_descriptionLang[$this->defaultLanguage];
     }
 
@@ -57,7 +57,7 @@ class eZClassSyncDataParams
         return array_keys($this->getDefinitions());
     }
 
-    public function getDefinitions()
+    public static function getDefinitions()
     {
         return array();
     }

@@ -8,18 +8,13 @@ $filename = base64_decode($Params['file']);
 
 if (!empty($filename) && file_exists($filename)) {
 
-    $compare = new eZClassSyncCompare();
-    $differences = $compare->compare($filename);
+    $sync = new eZClassSync($filename);
 
-    if ($differences) {
-        $results = $compare->storeChanges();
-    } else {
-        $results = null;
-    }
+    $results = $sync->sync();
 
     $tpl->setVariable(
         'result', (empty($results)) ? 'Nothing changed / Nothing to update.'
-            : 'Class updated:<br/>' . implode('.<br/>', $results)
+            : 'Result:<br/><br/>' . implode('.<br/>', $results)
     );
 } else {
     $tpl->setVariable('result', 'Error: file not found.');

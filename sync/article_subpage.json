@@ -1,28 +1,27 @@
 {
-    "identifier": "new_class2",
+    "identifier": "article_subpage",
     "initial_language_id": 2,
     "is_container": 0,
-    "always_available": 1,
-    "contentobject_name": "<new_attribute2>",
+    "always_available": 0,
+    "contentobject_name": "<title|index_title>",
     "language_mask": 3,
-    "remote_id": "1987e7963e35fc4bfc846497706e313e",
+    "remote_id": "68f305a18c76d9d03df36b810f290732",
     "sort_field": 1,
     "sort_order": 1,
     "url_alias_name": "",
     "languages": ["eng-GB"],
     "translation": {
         "eng-GB": {
-            "name": "ClassNameTest",
-            "description": "ClassDesc"
+            "name": "Article (sub-page)",
+            "description": ""
         }
     },
-
     "attributes": {
-        "new_attribute1": {
+        "title": {
             "data_type_string": "ezstring",
             "is_information_collector": 0,
             "is_required": 1,
-            "is_searchable": 0,
+            "is_searchable": 1,
             "can_translate": 1,
             "category": "",
             "data_float_1": 0,
@@ -40,17 +39,17 @@
             "data_text5": "",
             "translation": {
                 "eng-GB": {
-                    "name": "1Name-",
-                    "description": "1Desc-"
+                    "name": "Title",
+                    "description": ""
                 }
             }
         },
-        "new_attribute2": {
-            "data_type_string": "ezboolean",
+        "index_title": {
+            "data_type_string": "ezstring",
             "is_information_collector": 0,
             "is_required": 0,
-            "is_searchable": 0,
-            "can_translate": 0,
+            "is_searchable": 1,
+            "can_translate": 1,
             "category": "",
             "data_float_1": 0,
             "data_float_2": 0,
@@ -67,37 +66,63 @@
             "data_text5": "",
             "translation": {
                 "eng-GB": {
-                    "name": "2Name-",
-                    "description": "2Desc-"
+                    "name": "Index title",
+                    "description": ""
                 }
             }
         },
-        "new_attribute3": {
-            "data_type_string": "ezstring",
+        "body": {
+            "data_type_string": "ezxmltext",
             "is_information_collector": 0,
-            "is_required": 1,
-            "is_searchable": 0,
+            "is_required": 0,
+            "is_searchable": 1,
             "can_translate": 1,
             "category": "",
             "data_float_1": 0,
             "data_float_2": 0,
             "data_float_3": 0,
             "data_float_4": 0,
-            "data_int1": 32,
+            "data_int1": 15,
             "data_int2": 0,
             "data_int3": 0,
             "data_int4": 0,
-            "data_text1": "3DefTest",
+            "data_text1": "",
             "data_text2": "",
             "data_text3": "",
             "data_text4": "",
             "data_text5": "",
             "translation": {
                 "eng-GB": {
-                    "name": "3Name-",
-                    "description": "3Desc-"
+                    "name": "body",
+                    "description": ""
+                }
+            }
+        },
+        "tags": {
+            "data_type_string": "ezkeyword",
+            "is_information_collector": 0,
+            "is_required": 0,
+            "is_searchable": 1,
+            "can_translate": 1,
+            "category": "",
+            "data_float_1": 0,
+            "data_float_2": 0,
+            "data_float_3": 0,
+            "data_float_4": 0,
+            "data_int1": 0,
+            "data_int2": 0,
+            "data_int3": 0,
+            "data_int4": 0,
+            "data_text1": "",
+            "data_text2": "",
+            "data_text3": "",
+            "data_text4": "",
+            "data_text5": "",
+            "translation": {
+                "eng-GB": {
+                    "name": "Tags",
+                    "description": ""
                 }
             }
         }
-    }
-}
+    }}

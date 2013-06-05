@@ -7,9 +7,6 @@ class eZClassSyncData
     private $_classData;
     private $_attributesData = array();
 
-    public $Identifier = 'new_class';
-    public $ID = null;
-
     public function __construct($data = null)
     {
         if ($data !== null) {
@@ -20,7 +17,7 @@ class eZClassSyncData
                     //not supported
                 } else {
                     if (is_array($data)) {
-                        $this->loadFromString($string);
+                        $this->loadFromString($data);
                     } else {
                         $this->loadFromFile($data);
                     }
@@ -37,9 +34,23 @@ class eZClassSyncData
 //        }
     }
 
-    public function loadFromFile($src) { }
+    public function loadFromFile($src)
+    {
+        $this->loadFromString(json_decode(file_get_contents($jsonSrc), true));
+    }
 
-    public function loadFromString($string) { }
+    public function loadFromString($string)
+    {
+        $this->_classData = new eZClassSyncDataClass();
+        $this->_classData->fillFromArray($string);
+
+        $i = 0;
+        foreach ($string['attributes'] as $attributeName => $attributeData) {
+            $attr = new eZClassSyncDataAttribute();
+            $this->_attributesData[$attributeName] = $attr->fillFromArray($attributeName, $attributeData, $this->_classData);
+            $this->_attributesData[$attributeName]->Position = ++$i;
+        }
+    }
 
     public function loadFromClass($class)
     {
@@ -52,10 +63,35 @@ class eZClassSyncData
 
         foreach ($class->fetchAttributes() as $attribute) {
             $attr = new eZClassSyncDataAttribute();
-            $this->_attributesData[] = $attr->fillFromClass($attribute, $this->_classData);
+            $this->_attributesData[$attribute->Identifier] = $attr->fillFromClass($attribute, $this->_classData);
         }
 
         return true;
+    }
+
+    public function attributeNames()
+    {
+        return array_keys($this->_attributesData);
+    }
+
+    public function hasAttribute($name)
+    {
+        return array_key_exists($name, $this->_attributesData);
+    }
+
+    /**
+     * @param $name
+     *
+     * @return eZClassSyncDataAttribute
+     */
+    public function attribute($name)
+    {
+        return ($this->hasAttribute($name)) ? $this->_attributesData[$name] : null;
+    }
+
+    public function getClass()
+    {
+        return $this->_classData;
     }
 
     public function export2json()
@@ -96,4 +132,5 @@ class eZClassSyncData
 
         return $exportData;
     }
+
 }
