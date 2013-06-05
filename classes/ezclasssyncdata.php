@@ -22,16 +22,13 @@ class eZClassSyncData
                         $this->loadFromFile($data);
                     }
                 }
-
             }
         }
     }
 
     public function getClassName()
     {
-//        if (!empty($this->_classData)) {
         return $this->_classData->Identifier;
-//        }
     }
 
     public function loadFromFile($src)

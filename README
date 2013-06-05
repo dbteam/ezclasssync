@@ -1,0 +1,61 @@
+About eZClassSync
+=================
+
+This module can sync/install/export class properties, class attributes and their translations.
+They need to be defined in JSON files and put somewhere in extensions folder.
+
+
+
+Structure
+=================
+
+{
+    "identifier": "new_class",
+    "initial_language_id": 2,
+    "is_container": 0,
+    "always_available": 1,
+    "contentobject_name": "<new_attribute2>",
+    "language_mask": 3,
+    "sort_field": 1,
+    "sort_order": 1,
+    "url_alias_name": "",
+    "languages": ["eng-GB"], // list of ALL available languages
+    "translation": {
+        "eng-GB": {
+            "name": "ClassNameTest",
+            "description": "ClassDesc"
+        }
+    },
+
+    "attributes": {
+        "new_attribute1": {
+            "data_type_string": "ezstring",
+            "is_information_collector": 0,
+            "is_required": 1,
+            "is_searchable": 0,
+            "can_translate": 1,
+            "category": "",
+            "data_float_1": 0,
+            "data_float_2": 0,
+            "data_float_3": 0,
+            "data_float_4": 0,
+            "data_int1": 0,
+            "data_int2": 0,
+            "data_int3": 0,
+            "data_int4": 0,
+            "data_text1": "",
+            "data_text2": "",
+            "data_text3": "",
+            "data_text4": "",
+            "data_text5": "",
+            "translation": {
+                "eng-GB": {
+                    "name": "Name",
+                    "description": "Desc"
+                }
+            }
+        },
+        ... //repeat for more attributes
+    }
+}
+

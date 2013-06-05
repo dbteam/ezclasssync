@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<software>
+	<metadata>
+		<name>eZ Class Sync</name>
+		<version>1.0.0</version>
+		<copyright>Copyright (C) 2013 Piotr Gnys / DB-Team</copyright>
+		<license>GNU General Public License v2</license>
+		<info_url>https://github.com/dbteam/ezclasssync</info_url>
+	</metadata>
+</software>
