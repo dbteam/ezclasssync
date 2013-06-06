@@ -3,7 +3,7 @@
 $http = eZHTTPTool::instance();
 $tpl = eZTemplate::factory();
 
-$files = glob('extension/*/sync/*.json');
+$files = array_merge(glob('extension/*/sync/*.json'), glob('var/sync/*.json'));
 $fileList = array();
 
 foreach ($files as $k => $v) {

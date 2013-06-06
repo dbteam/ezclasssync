@@ -21,12 +21,12 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-class ezchangeclassInfo
+class eZClassSyncInfo
 {
 
     function info()
     {
-        return array('Name'      => 'eZClassSync extension',
+        return array('Name'      => '<a href="https://github.com/dbteam/ezclasssync">eZClassSync extension</a>',
                      'Version'   => '1.0',
                      'Copyright' => "Copyright (C) 2013 Piotr Gnys / DB-Team",
                      'License'   => 'GNU General Public License v2.0'

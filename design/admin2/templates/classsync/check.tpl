@@ -21,7 +21,7 @@
 {if not($compareResultClass|count)}
 	<p>This class will be installed!</p>
 	<div class="block">
-		<form method="get" action={"classsync/sync/formFileData"|ezurl}>
+		<form method="get" action={concat("classsync/sync/", $formFileData)|ezurl}>
 			<input class="defaultbutton" type="submit" value="Install">
 		</form>
 	</div>

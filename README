@@ -6,7 +6,14 @@ They need to be defined in JSON files and put somewhere in extensions folder.
 
 
 
-Structure
+How to import?
+=================
+To import you need to paste *.json file with proper config sync folder under any of site extensions (/extension/*/sync/*.json).
+Alternatively, you can put file in /var/sync/.
+
+
+
+File structure
 =================
 
 {

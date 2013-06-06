@@ -34,6 +34,7 @@
 	</table>
 
 	<div class="block">
-		<input class="button" type="submit" value="Export selected">
+		<input class="button" type="submit" name="zip" value="Export selected">
+		<input class="button" type="submit" name="var" value="Export selected to /var/sync/">
 	</div>
 </form>

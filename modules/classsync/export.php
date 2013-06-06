@@ -17,13 +17,7 @@ if (empty($Params['classID']) && !$http->hasPostVariable('ExportIDArray')) {
     }
 
     if (!empty($classesToExport)) {
-        // create zip file
-        $zipFileName = tempnam(sys_get_temp_dir(), "sync");
-        $zip = new ZipArchive();
-        if ($zip->open($zipFileName, ZIPARCHIVE::CREATE) !== TRUE) {
-            $Result['content'] = 'Cannot create zip';
-            return $module->handleError(eZError::KERNEL_NOT_AVAILABLE, 'kernel');
-        }
+        $exportedFiles = array();
 
         // now add all classes to export
         foreach ($classesToExport as $classID) {
@@ -31,25 +25,51 @@ if (empty($Params['classID']) && !$http->hasPostVariable('ExportIDArray')) {
             $contentClass = eZContentClass::fetch($classID);
             if ($contentClass !== null) {
                 $sync = new eZClassSyncData($contentClass);
-                $zip->addFromString(
-                    $sync->getClassName() . '.json', json_encode($sync->export2json(), JSON_NUMERIC_CHECK)
-                );
+                $exportedFiles[$sync->getClassName() . '.json'] = json_encode($sync->export2json(), JSON_NUMERIC_CHECK);
             }
         }
 
-        // return zip
-        $zip->close();
 
-        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="class_export_json.zip"');
-        header("Content-Length: " . filesize($zipFileName));
-        readfile($zipFileName);
+        // create zip file
+        if ($http->hasPostVariable('zip')) {
+            $zipFileName = tempnam(sys_get_temp_dir(), "sync");
+            $zip = new ZipArchive();
+            if ($zip->open($zipFileName, ZIPARCHIVE::CREATE) !== TRUE) {
+                $Result['content'] = 'Cannot create zip';
+                return $module->handleError(eZError::KERNEL_NOT_AVAILABLE, 'kernel');
+            }
 
-        // remove temp file
-        unlink($zipFileName);
-        ezExecution::cleanExit();
+            foreach ($exportedFiles as $filename => $content) {
+                $zip->addFromString($filename, $content);
+            }
+
+            // return zip
+            $zip->close();
+
+
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="class_export_json.zip"');
+            header("Content-Length: " . filesize($zipFileName));
+            readfile($zipFileName);
+
+            // remove temp file
+            unlink($zipFileName);
+            ezExecution::cleanExit();
+        } elseif ($http->hasPostVariable('var')) {
+            if (!is_dir(getcwd() . '/var/sync/')) {
+                mkdir(getcwd() . '/var/sync/', 0777, true);
+            }
+
+            foreach ($exportedFiles as $filename => $content) {
+                file_put_contents(getcwd() . '/var/sync/' . $filename, $content);
+            }
+
+            $Result['content'] = count($exportedFiles) . ' classes exported to /var/sync/';
+        } else {
+            return $module->handleError(eZError::KERNEL_NOT_AVAILABLE, 'kernel');
+        }
     } else {
         return $module->handleError(eZError::KERNEL_NOT_AVAILABLE, 'kernel');
     }
