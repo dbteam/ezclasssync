@@ -2,4 +2,6 @@
 
 <p>{$result}</p>
 
-<a href={"classsync/dashboard"|ezurl()}>Back</a>
+<p>
+	<a href={"classsync/dashboard"|ezurl()}>Back</a>
+</p>

@@ -4,18 +4,32 @@ $http = eZHTTPTool::instance();
 $Result = array();
 $tpl = eZTemplate::factory();
 
-$filename = base64_decode($Params['file']);
+$filesToCompare = array();
+$syncResults = array();
 
-if (!empty($filename) && file_exists($filename)) {
+if (!$http->hasPostVariable('sync')) {
+    $filesToCompare[$Params['file']] = base64_decode($Params['file']);
+} else {
+    foreach ($http->postVariable('ExportIDArray') as $filename) {
+        $filesToCompare[$filename] = base64_decode($filename);
+    }
+}
 
-    $sync = new eZClassSync($filename);
 
-    $results = $sync->sync();
+foreach ($filesToCompare as $key => $filename) {
 
-    $tpl->setVariable(
-        'result', (empty($results)) ? 'Nothing changed / Nothing to update.'
-            : 'Result:<br/><br/>' . implode('.<br/>', $results)
-    );
+    if (!empty($filename) && file_exists($filename)) {
+
+        $sync = new eZClassSync($filename);
+        $results = $sync->sync();
+
+        $syncResults[] = '<strong>' . $sync->getClassName() . '</strong>:<br/>' . (empty($results)
+            ? 'Nothing changed / Nothing to update.' : 'Result:<br/><br/>' . implode('.<br/>', $results) . '.');
+    }
+}
+
+if (!empty($syncResults)) {
+    $tpl->setVariable('result', implode('<br/><br/>', $syncResults));
 } else {
     $tpl->setVariable('result', 'Error: file not found.');
 }
