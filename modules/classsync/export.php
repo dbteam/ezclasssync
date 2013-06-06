@@ -57,16 +57,23 @@ if (empty($Params['classID']) && !$http->hasPostVariable('ExportIDArray')) {
             // remove temp file
             unlink($zipFileName);
             ezExecution::cleanExit();
-        } elseif ($http->hasPostVariable('var')) {
-            if (!is_dir(getcwd() . '/var/sync/')) {
-                mkdir(getcwd() . '/var/sync/', 0777, true);
+        } elseif ($http->hasPostVariable('var') or $http->hasPostVariable('extension')) {
+
+            $dir = ($http->hasPostVariable('var')) ? getcwd() . '/var/sync/' : getcwd() . '/extension/ezclasssync/sync/';
+
+            if (!is_dir($dir)) {
+                @mkdir($dir, 0777, true);
             }
 
-            foreach ($exportedFiles as $filename => $content) {
-                file_put_contents(getcwd() . '/var/sync/' . $filename, $content);
-            }
+            if (is_writeable($dir)) {
+                foreach ($exportedFiles as $filename => $content) {
+                    file_put_contents($dir . $filename, $content);
+                }
 
-            $Result['content'] = count($exportedFiles) . ' classes exported to /var/sync/';
+                $Result['content'] = count($exportedFiles) . ' classes exported to /var/sync/';
+            } else {
+                $Result['content'] = 'Directory is not writeable!';
+            }
         } else {
             return $module->handleError(eZError::KERNEL_NOT_AVAILABLE, 'kernel');
         }
