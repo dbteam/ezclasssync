@@ -2,22 +2,6 @@
 
 {foreach $compareResults as $class}
 	<h1>{$class.class}</h1>
-	{if gt($class.differences, 0)}
-		<p>There's {$class.differences} difference(s) in total.</p>
-		{if ne($class.attrToAdd,'')}Attributes to add: {$class.attrToAdd}<br/>{/if}
-		{if ne($class.attrToDrop,'')}Attributes to drop: {$class.attrToDrop}<br/>{/if}
-		{if ne($class.attrToUp,'')}Attributes to update: {$class.attrToUp}<br/>{/if}
-		<div class="block">
-			<form method="get" action={concat("classsync/sync/", $class.formFileData)|ezurl}>
-				<input class="defaultbutton" type="submit" value="Update & Sync">
-			</form>
-		</div>
-		<div class="block" style="border: 5px solid red; padding: 0 5px; background: tomato; text-align: center;">
-			<p><strong>Don't forget to make database backup before applying changes!</strong></p>
-		</div>
-	{else}
-		<p>Looks that there's no differences.</p>
-	{/if}
 	{if not($class.compareResultClass|count)}
 		<p>This class will be installed!</p>
 		<div class="block">
@@ -25,6 +9,23 @@
 				<input class="defaultbutton" type="submit" value="Install">
 			</form>
 		</div>
+	{else}
+		{if gt($class.differences, 0)}
+			<p>There's {$class.differences} difference(s) in total.</p>
+			{if ne($class.attrToAdd,'')}Attributes to add: {$class.attrToAdd}<br/>{/if}
+			{if ne($class.attrToDrop,'')}Attributes to drop: {$class.attrToDrop}<br/>{/if}
+			{if ne($class.attrToUp,'')}Attributes to update: {$class.attrToUp}<br/>{/if}
+			<div class="block">
+				<form method="get" action={concat("classsync/sync/", $class.formFileData)|ezurl}>
+					<input class="defaultbutton" type="submit" value="Update & Sync">
+				</form>
+			</div>
+			<div class="block" style="border: 5px solid red; padding: 0 5px; background: tomato; text-align: center;">
+				<p><strong>Don't forget to make database backup before applying changes!</strong></p>
+			</div>
+		{else}
+			<p>Looks that there's no differences.</p>
+		{/if}
 	{/if}
 
 	{if lt($compareResults|count,2)}
@@ -86,7 +87,7 @@
 {/foreach}
 
 <p>
-	<hr/>
-	<a href={"classsync/dashboard"|ezurl()}>Back</a>
+<hr/>
+<a href={"classsync/dashboard"|ezurl()}>Back</a>
 </p>
 
