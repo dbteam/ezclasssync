@@ -59,7 +59,8 @@ if (empty($Params['classID']) && !$http->hasPostVariable('ExportIDArray')) {
             ezExecution::cleanExit();
         } elseif ($http->hasPostVariable('var') or $http->hasPostVariable('extension')) {
 
-            $dir = ($http->hasPostVariable('var')) ? getcwd() . '/var/sync/' : getcwd() . '/extension/ezclasssync/sync/';
+            $dir = ($http->hasPostVariable('var')) ? getcwd() . '/var/sync/'
+                : getcwd() . '/extension/ezclasssync/sync/';
 
             if (!is_dir($dir)) {
                 @mkdir($dir, 0777, true);
@@ -70,7 +71,9 @@ if (empty($Params['classID']) && !$http->hasPostVariable('ExportIDArray')) {
                     file_put_contents($dir . $filename, $content);
                 }
 
-                $Result['content'] = count($exportedFiles) . ' classes exported to /var/sync/';
+                $Result['content']
+                    = count($exportedFiles) . ' classes exported to' . ($http->hasPostVariable('var') ? '/var/sync/'
+                        : '/extension/ezclasssync/sync/');
             } else {
                 $Result['content'] = 'Directory is not writeable!';
             }

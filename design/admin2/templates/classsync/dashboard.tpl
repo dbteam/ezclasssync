@@ -3,13 +3,13 @@
 
 	Those class entries are found in current installation:
 </div>
-<form action="" method="post" id="form-sync">
+<form action="" method="post" id="form-sync" name="JsonList">
 	<div class="box-content">
 
 		<table class="list">
 			<tr>
 				<th class="tight">
-					<img src={'toggle-button-16x16.gif'|ezimage} width="16" height="16" alt="{'Invert selection.'|i18n( 'design/admin/class/classlist' )}" title="{'Invert selection.'|i18n( 'design/admin/class/classlist' )}" onclick="ezjs_toggleCheckboxes( document.ClassList, 'ExportIDArray[]' ); return false;" />
+					<img src={'toggle-button-16x16.gif'|ezimage} width="16" height="16" alt="{'Invert selection.'|i18n( 'design/admin/class/classlist' )}" title="{'Invert selection.'|i18n( 'design/admin/class/classlist' )}" onclick="ezjs_toggleCheckboxes( document.JsonList, 'ExportIDArray[]' ); return false;" />
 				</th>
 				<th>ID</th>
 				<th>Filename</th>
