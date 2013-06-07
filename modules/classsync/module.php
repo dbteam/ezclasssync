@@ -28,5 +28,11 @@ $ViewList['export'] = array(
     'default_navigation_part' => 'ezclasssyncnavigationpart',
     'params'                  => array('classID'));
 
+$ViewList['import'] = array(
+    'functions'               => array('check'),
+    'script'                  => 'import.php',
+    'default_navigation_part' => 'ezclasssyncnavigationpart',
+    'params'                  => array());
+
 $FunctionList = array();
 $FunctionList['check'] = array();

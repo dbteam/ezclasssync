@@ -11,6 +11,7 @@
 				<ul class="leftmenu-items">
 					<li><a href={"/classsync/dashboard"|ezurl}>Dashboard</a></li>
 					<li><a href={"/classsync/export"|ezurl}>Export existing classes</a></li>
+					<li><a href={"/classsync/import"|ezurl}>Upload json files</a></li>
 				</ul>
 			</div>
 		</div>
